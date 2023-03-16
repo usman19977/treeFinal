@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="shortcut icon" href="#" />
+
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AWHBvkvprDyoBw_ZSf6vL6uHMHKa1HdH0P0HEn_EPyeHQfPIxV8FZ08tXK0LSjVhfDZ67V7UWZQS5hFA&components=buttons"></script>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="/css/messages.css">
+    <link rel="stylesheet" href="/css/carousel.css">
+    <link rel="stylesheet" href="/css/chatbot.css">
+    <title>
+        TreeHugger<%=title%>
+    </title>
+</head>
+
+<body>
+
+    <div class="page-top">
+        <div class="inner">
+            <p class="email icon-before"><a href="mailto:hello@treehuggerbranding.com"
+                    target="_blank">hello@treehuggerbranding.com</a>
+            </p>
+            <p class="separator">|</p>
+            <p class="phone icon-before"><a href="tel:020 3983 3596">020 3983 3596</a></p>
+
+        </div>
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <a href="/"><img src="/images/Header/header_800_200.png" alt="header logo with link to homepage"
+                    width="100%"></a>
+        </div>
+        <!-- <div class="search-container"> -->
+        <div class="search container" id='search-container'>
+            <form id='search-form'  >
+                <input required type="text" id='search' name="search" placeholder="search">
+                <div class="autocom-box" id='autocom-box'>
+                    <!-- here list are inserted from javascript -->
+                </div><button type="submit" class="btn btn-search">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </div>
+        <!-- </div> -->
+
+    </header>
+
+    <navbar class='sm-navbar' style='display: flex;justify-content: space-between;'>
+        <div class="category-tab home" id='home'>
+            <a href="/"><button class="btnAttr homeBtn"><i class="fa-solid fa-house"></i></button></a>
+        </div>
+        <div class="category-tab more">
+            <a href="#"><button class="btnAttr fa-solid fa-bars" data-name="more"></button></a>
+            <div class="category-tab-content" style='transform: translateX(-54%);'>
+                <!-- ================== BAGS ================= -->
+                <div class="category-tab" id="bags" data-name="bags">
+                    <a href="/products/bags/"><button class="btnAttr" data-name="bags">Bags</button></a>
+                    <div class="category-tab-content">
+                        <div class="myrow">
+                            <div class="mycolumn shopping">
+
+                                <h6><a href="/products/bags/shopping" data-name="bags">Shopping</a></h6>
+
+                                <a href="/products/bags/shopping/cotton" class="sub_cat_1" data-name="bags">cotton</a>
+                                <a href="/products/bags/shopping/nonWoven" data-name="bags">non-woven</a>
+
+                            </div>
+                            <div class="mycolumn sports">
+                                <h6><a href="/products/bags/sports" data-name="bags">Sports</a></h6>
+                                <a href="/products/bags/sports/duffel" data-name="bags">duffle</a>
+                                <a href="/products/bags/sports/cooler" data-name="bags">cooler</a>
+
+                            </div>
+                            <div class="mycolumn backpacks">
+                                <h6><a href="/products/bags/backpacks" data-name="bags">Backpacks</a></h6>
+                                <a href="/products/bags/backpacks/drawstring" data-name="bags">drawstring</a>
+                                <a href="/products/bags/backpacks/rucksack" data-name="bags">rucksacks</a>
+
+                            </div>
+                            <div class="mycolumn business">
+                                <h6><a href="/products/bags/business" data-name="bags">Business</a></h6>
+                                <a href="/products/bags/business/travel" data-name="bags">travel</a>
+                                <a href="/products/bags/business/messenger" data-name="bags">messenger</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- ================== WRITING ================= -->
+                <div class="category-tab" id="writing" data-name="writing">
+                    <a href="/products/writing/"><button class="btnAttr">Writing</button></a>
+                    <div class="category-tab-content">
+                        <div class="myrow">
+                            <div class="mycolumn">
+                                <h6><a href="/products/writing/notebook" data-name="writing">Notebook</a></h6>
+
+
+                            </div>
+                            <div class="mycolumn">
+                                <h6><a href="/products/writing/journal" data-name="writing">Journal</a></h6>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- ================== DRINKWARE ================= -->
+                <div class="category-tab" id="drinkware" data-name="drinkware">
+                    <a href="/products/drinkware/"><button class="btnAttr" data-name="drinkware">Drinkware</button></a>
+                    <div class="category-tab-content">
+                        <div class="myrow">
+                            <div class="mycolumn ceramic">
+                                <h6><a href="/products/drinkware/ceramic" data-name="drinkware">Ceramics</a></h6>
+                                <a href="/products/drinkware/ceramic/mug" data-name="drinkware">Mugs</a>
+                                <a href="/products/drinkware/ceramic/tumbler" data-name="drinkware">Tumblers</a>
+                            </div>
+                            <div class="mycolumn sports_bottle">
+                                <h6><a href="/products/drinkware/sports_bottle" data-name="drinkware">Sports Bottles</a>
+                                </h6>
+                                <a href="/products/drinkware/sports_bottle/aluminium"
+                                    data-name="drinkware">Aluminium</a>
+                                <a href="/products/drinkware/sports_bottle/stainless steel"
+                                    data-name="drinkware">Stainless
+                                    Steel</a>
+                                <a href="/products/drinkware/sports_bottle/plastic" data-name="drinkware">Plastic</a>
+                            </div>
+                            <div class="mycolumn insulated">
+                                <h6><a href="/products/drinkware/insulated" data-name="drinkware">Insulated</a></h6>
+                                <a href="/products/drinkware/insulated/tumbler" data-name="drinkware">Tumblers</a>
+                                <a href="/products/drinkware/insulated/mug" data-name="drinkware">Mugs</a>
+                                <a href="/products/drinkware/insulated/bottle" data-name="drinkware">Bottles</a>
+                                <a href="/products/drinkware/insulated/growler" data-name="drinkware">Growler</a>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- ================== CLOTHING ================= -->
+                <div class="category-tab" id="clothing" data-name="clothing">
+                    <a href="/products/clothing/"><button class="btnAttr" data-name="clothing">Clothing</button></a>
+                    <div class="category-tab-content">
+                        <div class="myrow">
+                            <div class="mycolumn t_shirts">
+                                <h6><a href="/products/clothing/t_shirt" data-name="clothing">T-Shirts</a></h6>
+                                <a href="/products/clothing/t_shirt/polo" data-name="clothing">Polo</a>
+                            </div>
+                            <div class="mycolumn sweatshirt">
+                                <h6><a href="/products/clothing/sweatshirt" data-name="clothing">Sweatshirts</a></h6>
+                                <a href="/products/clothing/sweatshirt/hoodie" data-name="clothing">Hoodies</a>
+                            </div>
+                            <div class="mycolumn jacket">
+                                <h6><a href="/products/clothing/jacket" data-name="clothing">Jackets</a></h6>
+                                <a href="/products/clothing/jacket/recycled_synthetic" data-name="clothing">Recycled
+                                    Synthetics</a>
+                                <a href="/products/clothing/jacket/knitware" data-name="clothing">Knitware</a>
+                            </div>
+                            <div class="mycolumn headware">
+                                <h6><a href="/products/clothing/headware" data-name="clothing">Headware</a></h6>
+                                <a href="/products/clothing/headware/cap" data-name="clothing">Caps</a>
+                                <a href="/products/clothing/headware/mesh_backed_cap" data-name="clothing">Mesh backed
+                                    Caps</a>
+                                <a href="/products/clothing/headware/sports_headgear" data-name="clothing">Sports
+                                    Headgear</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- ================== EMPTY  ================= -->
+
+                <div class="category-tab">
+                    <button class="btnAttr">Tech</button>
+                </div>
+                <div class="category-tab">
+                    <button class="btnAttr">Office</button>
+
+                </div>
+                <div class="category-tab hide">
+                    <button class="btnAttr">Events</button>
+
+                </div>
+                <div class="category-tab">
+                    <button class="btnAttr">Lanyards</button>
+                </div>
+                <div class="category-tab">
+                    <button class="btnAttr">Paper</button>
+                </div>
+                <div class="category-tab">
+                    <button class="btnAttr">Flowers & Seeds</button>
+                </div>
+                <!-- ============= MORE ============= -->
+                <div class="category-tab more">
+                    <a href="#"><button class="btnAttr" data-name="more">More</button></a>
+                    <div class="category-tab-content ">
+                        <div class="myrow">
+                            <div class="mycolumn">
+                                <div class="category-tab" id="bags" data-name="bags">
+                                    <a href="/products/bags/"><button class="btnAttr" data-name="bags">Bags</button></a>
+                                    <a href="/products/writing/"><button class="btnAttr">Writing</button></a>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </navbar>
+    <navbar class='md-navbar'>
+        <div class="inner">
+            <div class="category-tab home" id='home'>
+                <a href="/"><button class="btnAttr homeBtn"><i class="fa-solid fa-house"></i></button></a>
+            </div>
+            <!-- ================== BAGS ================= -->
+            <div class="category-tab" id="bags" data-name="bags">
+                <a href="/products/bags/"><button class="btnAttr" data-name="bags">Bags</button></a>
+                <div class="category-tab-content">
+                    <div class="myrow">
+                        <div class="mycolumn shopping">
+
+                            <h6><a href="/products/bags/shopping" data-name="bags">Shopping</a></h6>
+
+                            <a href="/products/bags/shopping/cotton" class="sub_cat_1" data-name="bags">cotton</a>
+                            <a href="/products/bags/shopping/nonWoven" data-name="bags">non-woven</a>
+
+                        </div>
+                        <div class="mycolumn sports">
+                            <h6><a href="/products/bags/sports" data-name="bags">Sports</a></h6>
+                            <a href="/products/bags/sports/duffel" data-name="bags">duffle</a>
+                            <a href="/products/bags/sports/cooler" data-name="bags">cooler</a>
+
+                        </div>
+                        <div class="mycolumn backpacks">
+                            <h6><a href="/products/bags/backpacks" data-name="bags">Backpacks</a></h6>
+                            <a href="/products/bags/backpacks/drawstring" data-name="bags">drawstring</a>
+                            <a href="/products/bags/backpacks/rucksack" data-name="bags">rucksacks</a>
+
+                        </div>
+                        <div class="mycolumn business">
+                            <h6><a href="/products/bags/business" data-name="bags">Business</a></h6>
+                            <a href="/products/bags/business/travel" data-name="bags">travel</a>
+                            <a href="/products/bags/business/messenger" data-name="bags">messenger</a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- ================== WRITING ================= -->
+            <div class="category-tab" id="writing" data-name="writing">
+                <a href="/products/writing/"><button class="btnAttr">Writing</button></a>
+                <div class="category-tab-content">
+                    <div class="myrow">
+                        <div class="mycolumn">
+                            <h6><a href="/products/writing/notebook" data-name="writing">Notebook</a></h6>
+
+
+                        </div>
+                        <div class="mycolumn">
+                            <h6><a href="/products/writing/journal" data-name="writing">Journal</a></h6>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- ================== DRINKWARE ================= -->
+            <div class="category-tab" id="drinkware" data-name="drinkware">
+                <a href="/products/drinkware/"><button class="btnAttr" data-name="drinkware">Drinkware</button></a>
+                <div class="category-tab-content">
+                    <div class="myrow">
+                        <div class="mycolumn ceramic">
+                            <h6><a href="/products/drinkware/ceramic" data-name="drinkware">Ceramics</a></h6>
+                            <a href="/products/drinkware/ceramic/mug" data-name="drinkware">Mugs</a>
+                            <a href="/products/drinkware/ceramic/tumbler" data-name="drinkware">Tumblers</a>
+                        </div>
+                        <div class="mycolumn sports_bottle">
+                            <h6><a href="/products/drinkware/sports_bottle" data-name="drinkware">Sports Bottles</a>
+                            </h6>
+                            <a href="/products/drinkware/sports_bottle/aluminium" data-name="drinkware">Aluminium</a>
+                            <a href="/products/drinkware/sports_bottle/stainless steel" data-name="drinkware">Stainless
+                                Steel</a>
+                            <a href="/products/drinkware/sports_bottle/plastic" data-name="drinkware">Plastic</a>
+                        </div>
+                        <div class="mycolumn insulated">
+                            <h6><a href="/products/drinkware/insulated" data-name="drinkware">Insulated</a></h6>
+                            <a href="/products/drinkware/insulated/tumbler" data-name="drinkware">Tumblers</a>
+                            <a href="/products/drinkware/insulated/mug" data-name="drinkware">Mugs</a>
+                            <a href="/products/drinkware/insulated/bottle" data-name="drinkware">Bottles</a>
+                            <a href="/products/drinkware/insulated/growler" data-name="drinkware">Growler</a>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- ================== CLOTHING ================= -->
+            <div class="category-tab" id="clothing" data-name="clothing">
+                <a href="/products/clothing/"><button class="btnAttr" data-name="clothing">Clothing</button></a>
+                <div class="category-tab-content">
+                    <div class="myrow">
+                        <div class="mycolumn t_shirts">
+                            <h6><a href="/products/clothing/t_shirt" data-name="clothing">T-Shirts</a></h6>
+                            <a href="/products/clothing/t_shirt/polo" data-name="clothing">Polo</a>
+                        </div>
+                        <div class="mycolumn sweatshirt">
+                            <h6><a href="/products/clothing/sweatshirt" data-name="clothing">Sweatshirts</a></h6>
+                            <a href="/products/clothing/sweatshirt/hoodie" data-name="clothing">Hoodies</a>
+                        </div>
+                        <div class="mycolumn jacket">
+                            <h6><a href="/products/clothing/jacket" data-name="clothing">Jackets</a></h6>
+                            <a href="/products/clothing/jacket/recycled_synthetic" data-name="clothing">Recycled
+                                Synthetics</a>
+                            <a href="/products/clothing/jacket/knitware" data-name="clothing">Knitware</a>
+                        </div>
+                        <div class="mycolumn headware">
+                            <h6><a href="/products/clothing/headware" data-name="clothing">Headware</a></h6>
+                            <a href="/products/clothing/headware/cap" data-name="clothing">Caps</a>
+                            <a href="/products/clothing/headware/mesh_backed_cap" data-name="clothing">Mesh backed
+                                Caps</a>
+                            <a href="/products/clothing/headware/sports_headgear" data-name="clothing">Sports
+                                Headgear</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- ================== EMPTY  ================= -->
+
+            <div class="category-tab">
+                <button class="btnAttr">Tech</button>
+            </div>
+            <div class="category-tab">
+                <button class="btnAttr">Office</button>
+
+            </div>
+            <div class="category-tab hide">
+                <button class="btnAttr">Events</button>
+
+            </div>
+            <div class="category-tab">
+                <button class="btnAttr">Lanyards</button>
+            </div>
+            <div class="category-tab">
+                <button class="btnAttr">Paper</button>
+            </div>
+            <div class="category-tab">
+                <button class="btnAttr">Flowers & Seeds</button>
+            </div>
+            <!-- ============= MORE ============= -->
+            <div class="category-tab more">
+                <a href="#"><button class="btnAttr" data-name="more">More</button></a>
+                <div class="category-tab-content ">
+                    <div class="myrow">
+                        <div class="mycolumn">
+                            <div class="category-tab" id="bags" data-name="bags">
+                                <a href="/products/bags/"><button class="btnAttr" data-name="bags">Bags</button></a>
+                                <a href="/products/writing/"><button class="btnAttr">Writing</button></a>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </navbar>
+
+    <% if(url && category) { %>
+        <div id='bread'>
+            <nav aria-label="breadcrumb" class='breadcrumb' id='breadcrumb'>
+                <ol class="default-breadcrumb">
+
+                    <li class="crumb">
+                        <div class="link"><a>products</a></div>
+                    </li>
+                    <li class="crumb">
+                        <div class="link"><a href="/products/<%= category.name %>">
+                                <%= category.name %>
+                            </a></div>
+                    </li>
+                    <% if (url.split("/")[3]) { %>
+
+                        <li class="crumb">
+                            <div class="link"><a href="/<%= url.split('/').slice(1).slice(0,3).join('/') %>">
+                                    <%= url.split("/")[3] %>
+                                </a></div>
+                        </li>
+                        <% } %>
+                            <% if (url.split("/")[4]) { %>
+                                <li class="crumb">
+                                    <div class="link"><a href="/<%= url.split('/').slice(1).slice(0,4).join('/') %>">
+                                            <%= url.split("/")[4] %>
+                                        </a></div>
+                                </li>
+                                <% } %>
+
+                </ol>
+            </nav>
+        </div>
+        <% } %>
+            <form class="modal admin-modal" id="admin" style='
+                min-width: 450px;
+    height: 500px;
+    overflow: hidden;
+    padding: 2rem;
+    bottom: 0;
+    right: 0;
+    top: unset;
+    left: unset;
+    z-index: 66666666666;
+            '>
+                <div class="modal-header">
+                    <button data-close-button type='reset' class="close-button">&times;</button>
+                </div>
+
+                <div>
+                    <fieldset style='    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;'>
+                        <label for="username">Username</label>
+                        <input name='username' id="username" placeholder="Username" label="Username" type="text"
+                            tabindex="1" required />
+                    </fieldset>
+                    <fieldset style='    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;'>
+                        <label for="password">Password (if admin)</label>
+
+                        <input name='password' id="password" placeholder="Password" label="Password (if admin)"
+                            type="password" tabindex="2" />
+                    </fieldset>
+
+                    <button style='margin-top: 3rem;' name="submit" label="submit" type="submit" id="q-send"
+                        data-submit="...Sending">
+                        Start Chat
+                        </butto>
+                        </fieldset>
+                </div>
+
+
+            </form>
+
+            <div id="overlay"></div>
+
+            <div class="center notShowing" id='chat-messages'>
+                <div class="contacts" id='contacts'>
+                    <i class="fas fa-bars fa-2x">
+                    </i>
+                    <h2>Users</h2>
+
+
+                </div>
+                <div class="chat">
+                    <div class="contact bar" id='contact-bar' style='position: relative;'>
+                        <!-- <div class="pic stark">
+                        </div>
+                        <div class="name">Tony Stark</div>
+                        <div class="seen">Today at 12:56</div>
+                        <i class='fas fa-close' id='close-chat' style='cursor: pointer; position:absolute;top:5px;right :5px'></i> -->
+                    </div>
+                    <div class="messages" id="chat">
+
+                    </div>
+                    <form id='message-form'>
+                        <div class="input">
+                            </i><input id='newMsg' required placeholder="Type your message here!" type="text" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <!-- <div id="designstudio-button" class="designstudio-button"
+                style="position: fixed; z-index: 999998; font-size: 14px; bottom: 0px; right: 0%;"><button
+                    id="transparent-button" class="transparent-button" type="button"
+                    style="background: transparent !important; border: none !important; cursor: pointer !important; position: absolute !important; left: 0 !important; top: 0 !important; bottom: 0 !important; right: 0 !important; width: 100% !important; height: 100% !important; display: block !important; text-indent: -99999px !important; text-align: left !important; padding: 0 !important; overflow: hidden !important; z-index: 1 !important; border-radius: 0 !important; margin: 0 !important; -webkit-appearance: none !important; box-shadow: none !important; line-height: 100% !important; ">Live
+                    Chat</button><iframe id="iframe-designstudio-button" translate="no"
+                    style="border:none;display:block;" name="designstudio-button-frame" title="Live Chat Button"
+                    tabindex="-1" scrolling="no" height="142" width="253"
+                    class="designstudio-animated designstudio-slideInUp"></iframe></div> -->
+            <div class="start-chat" id='start-chat' data-modal-target="#admin" >
+                <!-- <i class='fas fa-message'></i> -->
+                <img id="designstudio-button-image-desktop" alt="Button" src="/images/header/chat-img1.png">
+            </div>
+            <div style='display: none'>
+                <h1 style='font-size: 0;' id='userIdValue'>
+                    <%=userId%>
+                </h1>
+                <h1 style='font-size: 0;' id='usernameValue'>
+                    <%=username%>
+                </h1>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <script src="/js/form.js"></script>
+            <script src="/js/chat.js"></script>
+            <script src="/js/chatbot.js"></script>
+
+</body>

@@ -1,0 +1,174 @@
+<%- include('./partials/header.ejs') %>
+    <main>
+
+        <section class="hero-main" aria-label="promotional sliding banners">
+            <div class="hero-slider">
+                <div class="slide-controls">
+                    <button class="carousel-button" id="prev" title="Prev">
+                        &#8249;
+                    </button>
+                    <button class="carousel-button" id="next" title="Next">
+                        &#8250;
+                    </button>
+                </div>
+                <div class="slide-copy coffee d-none d-sm-block">
+                    <h2>move to zero<br> waste</h2>
+                </div>
+                <div id="container">
+                    <div id="slider">
+                        <div class="slide good">
+                            <a href="/products?search=coffee">
+                                <img src="/images/Banners/Coffee_Banner _Blank.jpg"
+                                    alt="sustaintable coffee cups clickable promotional banner">
+                                <div class="slide-copy coffee">
+                                    <!-- <h2>move to zerox<br> waste</h2> -->
+                                </div>
+                            </a>
+                        </div>
+                        <div class="slide">
+                            <a href="/products/bags/">
+                                <img src="/images/Banners/Bags_Banner_Blank.jpg"
+                                    alt="sustaintable bags clickable promotional banner">
+                                <!-- <div class="slide-copy two">
+            									<h2>move to zero<br> waste</h2>
+            								</div> -->
+                            </a>
+                        </div>
+                        <div class="slide">
+                            <a href="/products?search=bottles">
+                                <img src="/images/Banners/Water_bottles_Banner_Blank.jpg"
+                                    alt="sustainable water bottles clickable promotional banner">
+                                <!-- <div class="slide-copy three">
+            									<h2>move to zero<br> waste</h2>
+            								</div> -->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-static-image  d-none d-sm-block">
+                <a href="/products?search=mask"><img src="/images/Banners/facemask_banner_small_blank.jpg"
+                        alt="clickable stripy designer facemask banner" width="100%"></a>
+            </div>
+        </section>
+        <section style="padding: 0px;  margin-bottom: 0px;" class="d-block d-sm-none">
+            <img src="/images/Banners/facemask_banner_wide_blank.jpg" style=" width: 100%;">
+        </section>
+        <section class="promotion-main">
+            <div class="promotion-panel-main">
+                <a href="/products?search=bamboo">
+                    <div class="promotion-panel-upper">
+                        <div class="image">
+                            <img src="./images/Banners/bamboo header.jpg" alt="promotions: bamboo products" />
+                        </div>
+                        <div class="title-bamboo">
+                            <h5>
+                                <span>- BAMBOO -</span><br />
+                                100% NATURAL , DURABLE & BIODEGRADABLE
+                            </h5>
+                        </div>
+                        <div class="promotions-description">
+                            <p>
+                                The only thing growing faster than our collection of bamboo
+                                items is the bamboo itself! Bamboo absorbs plenty of CO2,
+                                produces oxygen, has little water needs and uses no fertilisers.
+                                This strong, super sustainable material also looks great.
+                                Fantastic prices and many printing options.
+                            </p>
+                        </div>
+                        <div class="browse-bamboo">
+
+                            <h5>Browse our full range.</h5>
+
+                        </div>
+                        <hr />
+                    </div>
+                </a>
+
+                <div class="promotion-panel-lower">
+
+                    <% products_0.forEach(product=>{ %>
+                        <% var m=product.price1 %>
+                            <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                                <a href="/details/promotions/<%=product.product_id %>">
+                                    <div class="promo-grid-item">
+                                        <div class="product-name">
+                                            <%=product.product_name %>
+                                        </div>
+                                        <img src=/images/product/resized/<%=product.product_photo?.split(",")[0]%> alt=
+                                        <%=product.product_name %>class="photo" />
+                                            <h4 class="prices-from">prices from: <%=numUSD.format(m);%>
+                                            </h4>
+                                    </div>
+                                </a>
+
+                                <% }) %>
+                </div>
+
+            </div>
+            <div class="promotion-panel-main">
+                <a href="/products?search=hemp">
+                    <div class="promotion-panel-upper">
+                        <div class="image">
+                            <img src="./images/Banners/hemp header.jpg" alt="promotions: hemp promotions" />
+                        </div>
+                        <div class="title-hemp">
+
+                            <h5>- HEMP -<br />100% NATURAL , DURABLE & BIODEGRADABLE</h5>
+
+                        </div>
+                        <div class="promotions-description">
+                            <p>
+                                Hemp is one of the oldest and most eco-friendly textile fabrics.
+                                It is made from fibres of the fast growing cannabis plant that
+                                can grow without the assistance of fertilizers and pesticides.
+                                This makes it a 100% organic crop and very environmentally
+                                friendly and 100% recyclable.
+                            </p>
+                        </div>
+                        <div class="browse-hemp">
+
+                            <h5>Browse our full range.</h5>
+                        </div>
+                        <hr />
+                    </div>
+                </a>
+                <div class="promotion-panel-lower">
+                    <% products_1.forEach(product=>{ %>
+                        <% var m=product.price1 %>
+                            <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                                <a href="/details/promotions/<%=product.product_id %>">
+                                    <div class="promo-grid-item">
+                                        <div class="product-name">
+                                            <%=product.product_name %>
+                                        </div>
+                                        <img src=/images/product/resized/<%=product.product_photo?.split(",")[0]%> alt=
+                                        <%=product.product_name %>class="photo" />
+                                            <h4 class="prices-from">prices from: <%=numUSD.format(m);%>
+                                            </h4>
+                                    </div>
+                                </a>
+
+                                <% }) %>
+                </div>
+            </div>
+        </section>
+
+
+        <%- include('./partials/reviews.ejs') %>
+
+
+            <!-- ======= INFINITE CAROUSEL START ======== -->
+            <%- include('./partials/logo-ticker.ejs') %>
+
+    </main>
+    <!-- ======= INFINITE CAROUSEL END ======== -->
+
+    <%- include('./partials/footer.ejs') %>
+
+
+        <script src="/js/hero_slider.js"></script>
+
+        </body>
+
+        </html>

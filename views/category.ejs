@@ -1,0 +1,100 @@
+<%- include('./partials/header.ejs') %>
+  <mainDiv class="w-100">
+    <div class="row px-5-4 py-2">
+      <nav class="col-md-3 col-sm-6 m-2-sm mb-2 mx-auto sidenav-border">
+        <h1 class="heading text-capitalize filters-open pt-0">
+          <%= category.name %> Filter
+        </h1>
+
+        <div class="filters" style="display:none;">
+          <div class="color-filter-outer">
+            <div class="col-md-12 color-filter-surround">
+              <div href="any">
+                <div class="spotColor any" data-name="any">any</div>
+              </div>
+              <% colour_filter.forEach(color=> { %>
+                <div href="<%= color %>">
+                  <div class="spotColor <%= color.replace('/','-').replace(' ','-') %>" data-name="<%= color %>"></div>
+                </div>
+                <% }) %>
+            </div>
+          </div>
+          <div class="accordionContainer">
+            <div class="accordion col-md-12">
+              <% category.subCategories.forEach(cat=>{ %>
+                <div>
+                  <span>
+                    <%= cat.name %>
+                  </span>
+                  <div class="div">
+                    <% cat.subCategories.forEach(subCat=>{ %>
+                      <div class="text">
+                        <a onclick="test" href="<%= subCat.link %>" data-name="<%= cat.dataName %>>">
+                          <%= subCat.name %>
+                        </a>
+                      </div>
+                      <% }) %>
+                  </div>
+                </div>
+                <% }) %>
+            </div>
+          </div>
+        </div>
+
+      </nav>
+      <% if(products.length===0) { %>
+        <h1 class='no-results'>No Items for this Search / Filter Results!</h1>
+        <% } %>
+          <!-- ============= PRODUCT THUMBNAILS ================= -->
+          <div class="col-md-9">
+            <div class="row">
+              <% products.forEach(product=>{ %>
+                <% var m=product.price5 %>
+                  <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                    <div class="col-md-3 col-6 d-flex justify-content-center mb-2 p-2">
+                      <a href="/details/<%=product.category %>/<%=product.product_id %>">
+                        <div class="grid-item">
+                          <div class="product-name">
+                            <%=product.product_name %>
+                          </div>
+                          <img src=/images/product/resized/<%=product.product_photo?.split(",")[0]%> alt=
+                          <%=product.product_name %>
+                            class="photo img-fluid" />
+                            <h4 class="prices-from">prices from: <%=numUSD.format(m);%>
+                            </h4>
+                        </div>
+                      </a>
+                    </div>
+                    <% }) %>
+            </div>
+          </div>
+          <!-- pagination -->
+    </div>
+    <% if(products.length> 0) { %>
+      <div class="pagination">
+        <button class="pagination-btn" id='prev_btn'>
+          <svg xmlns="http://www.w3.org/2000/svg" class="pagination-btn--icon" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <div class="pages">
+          <% Array (Math.ceil( length / 8)).fill().forEach((_,idx)=>{ %>
+            <a class="page" data-name='<%=idx+1%>'>
+              <%= idx+1 %>
+            </a>
+            <% }) %>
+        </div>
+        <button class="pagination-btn" id='next_btn'>
+          <svg xmlns="http://www.w3.org/2000/svg" class="pagination-btn--icon" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+      <% } %>
+  </mainDiv>
+  <script src="/js/filter.js"></script>
+  </body>
+
+  </html>

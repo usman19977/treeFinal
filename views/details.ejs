@@ -1,0 +1,607 @@
+<%- include('./partials/header.ejs') %>
+
+  <body>
+    <% products.forEach(product=>{ %>
+      <main class="container">
+        <%- include('./partials/heading.ejs',{heading:products[0]?.product_name}) %>
+        <div class="quote-button-wrapper d-block d-sm-none row">
+          <button class="get-quote__action getquoteonmobile primary action">
+            <h4>Get a quick quote</h4>
+          </button>
+        </div>
+        <!-- =========== Product main ================== -->
+        <!-- ================ PRODUCT IMAGE ============ -->
+        <div class="product-main row">
+
+           
+
+          <div class="product-media-main col-md-5 m-0 d-flex">
+            <div class="main-image">
+              <img id='main-image' src=/images/product/large/<%=product.product_photo?.split(",")[0] %> alt=
+              <%=product.product_name %>
+                class="photo img-fluid"  />
+            </div>
+          
+            <% if(product.product_photo?.split(",").length> 1){ %>
+              <div class="slide-controls-detail  d-flex d-sm-none">
+                <button class="carousel-button-detail carousel-button-detail-prev " id="prev" title="Prev">
+                    &#8249;
+                </button>
+                <button class="carousel-button-detail carousel-button-detail-next" id="next" title="Next">
+                    &#8250;
+                </button>
+            </div>
+              <div class="carousel">
+                <input checked="checked" class="carousel__activator" id="carousel-slide-activator-1" name="carousel"
+                  type="radio" />
+                <input class="carousel__activator" id="carousel-slide-activator-2" name="carousel" type="radio" />
+                <input class="carousel__activator" id="carousel-slide-activator-3" name="carousel" type="radio" />
+                <% if ( product.product_photo?.split(",").length> 3 ) { %>
+
+                  <div class="carousel__controls">
+                    <label class="carousel__control carousel__control--forward" for="carousel-slide-activator-2">
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </label>
+                  </div>
+                  <% } %>
+                    <% Array(product.product_photo?.split(",").slice(1).length> 6 ?
+                      product.product_photo?.split(",").slice(1).length : 0).fill().forEach((img,idx)=> { %>
+                      <div class="carousel__controls">
+                        <label class="carousel__control carousel__control--backward" for="carousel-slide-activator-1">
+                          <i class="fa-solid fa-chevron-left"></i>
+                        </label>
+                        <label class="carousel__control carousel__control--forward" for="carousel-slide-activator-3">
+                          <i class="fa-solid fa-chevron-right"></i>
+                        </label>
+                      </div>
+                      <% }) %>
+
+
+
+
+                        <% if ( product.product_photo?.split(",").length> 3 ) {
+                          for(var i=1; i< product.product_photo?.split(",").map((el,idx)=> Math.floor(idx -1 /
+                            3)).slice(3).length; i++ ) { %>
+                            <div class="carousel__controls">
+                              <label class="carousel__control carousel__control--backward"
+                                for="carousel-slide-activator-<%=i%>">
+                                <i class="fa-solid fa-chevron-left"></i>
+                              </label>
+                            </div>
+                            <% } } %>
+
+
+                              <div class="carousel__screen">
+
+                                <div class="carousel__track">
+                                  <% product.product_photo?.split(",").slice(1).forEach((img,idx)=> { %>
+                                    <div
+                                      class="carousel__item carousel__item--mobile-in-1 carousel__item--tablet-in-2 carousel__item--desktop-in-3">
+                                      <div data-src='/images/product/large/<%=img.trim()%>' class="demo-content"
+                                        style='cursor: pointer; background-image: url(/images/product/large/<%=img.trim()%>);background-size:cover'>
+                                      </div>
+                                    </div>
+                                    <% }) %>
+
+                                </div>
+
+                              </div>
+              </div>
+              <% } %>
+                <!-- end of carousel -->
+          </div>
+          <!-- =========== PRODUCT INFO ================== -->
+          <div class="product-info-main col-md-7">
+            <div class="item-info product-title d-none d-sm-block">
+              <h1>
+                <%=product.product_name %>
+              </h1>
+            </div>
+
+
+            <p>
+              <%product.product_sku%>
+            </p>
+            <div class="item-info ">
+              <h3 class="min-price">
+                <% var m=product.price5 %>
+                  <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+
+                    <%=numUSD.format(m);%>
+
+              </h3>
+
+            </div>
+
+
+            <p class="bold">Minimum order quantity:</p>
+            <p class="regular">to be included dynamical</p>
+
+            <p class="bold">Lead time:</p>
+            <p class="regular">10 days from artwork approval</p>
+
+            <p class="bold">
+              Description:
+            </p>
+            <p class="regular info-content">
+              <%=product.description %>
+            </p>
+            <p class="bold">
+              Available colours:
+            </p>
+            <p class="regular">
+              <%=product.colors_available %>
+            </p>
+            <p class="bold">Approximate size</p>
+            <p class="regular">
+              <%=product.approximate_size %>
+            </p>
+            <div class="sample-link d-block d-sm-none mb-0 text-center">
+              <p>
+                To Order a Sample <a class='link-anchor  d-sm-none sampleLink'  id="order-sample" href="javascript:void(0);">Click
+                  here</a>
+              </p>
+            </div>
+
+            <div class="item-info">
+              <p class="product-ref">
+                <%=product.product_id%>
+              </p>
+            </div>
+            <!-- ================= TIERED PRICING ================ -->
+            <!-- <div class="item-info tiered-pricing-main"> -->
+         
+              <div class="table-responsive d-block d-sm-none">
+                <table class="pricing table-bordered">
+                  <tbody>
+                    <tr>
+                      <td class="align-middle">Quantity</td>
+                      <td class="align-middle" style="color:#fb667a;">Unit Price</td>
+                    </tr>
+                    <tr>
+                      <td class="align-middle text-dark ">
+                        <%=product.quantity5 %>
+                      </td>
+                      <td class="align-middle text-dark ">
+                        <% var m=product.price5 %>
+                          <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                            <h4 class="prices-from">
+                              <%=numUSD.format(m);%>
+                            </h4>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="align-middle text-dark ">
+                        <%=product.quantity4 %>
+                      </td>
+                      <td class="align-middle text-dark ">
+                        <% var m=product.price4 %>
+                          <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                            <h4 class="prices-from">
+                              <%=numUSD.format(m);%>
+                            </h4>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="align-middle text-dark ">
+                        <%=product.quantity3 %>
+                      </td>
+                      <td class="align-middle text-dark ">
+                        <% var m=product.price3 %>
+                          <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                            <h4 class="prices-from">
+                              <%=numUSD.format(m);%>
+                            </h4>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="align-middle text-dark ">
+                        <%=product.quantity2 %>
+                      </td>
+                      <td class="align-middle text-dark ">
+                        <% var m=product.price2 %>
+                          <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                            <h4 class="prices-from">
+                              <%=numUSD.format(m);%>
+                            </h4>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="align-middle text-dark ">
+                        <%=product.quantity1 %>
+                      </td>
+                      <td class="align-middle text-dark ">
+                        <% var m=product.price1 %>
+                          <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                            <h4 class="prices-from">
+                              <%=numUSD.format(m);%>
+                            </h4>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+           
+         
+              <div class="table-responsive d-none d-sm-block">
+              <table class="pricing table-bordered">
+                <tbody>
+                  <tr>
+                    <td class="align-middle ">Quantity</td>
+                    <td class="align-middle ">
+                      <%=product.quantity5 %>
+                    </td>
+                    <td class="align-middle ">
+                      <%=product.quantity4 %>
+                    </td>
+                    <td class="align-middle ">
+                      <%=product.quantity3 %>
+                    </td>
+                    <td class="align-middle ">
+                      <%=product.quantity2 %>
+                    </td>
+                    <td class="align-middle ">
+                      <%=product.quantity1 %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="align-middle ">Unit Price</td>
+                    <td class="align-middle ">
+                      <% var m=product.price5 %>
+                        <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                          <h4 class="prices-from">
+                            <%=numUSD.format(m);%>
+                          </h4>
+                    </td>
+                    <td class="align-middle ">
+                      <% var m=product.price4 %>
+                        <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                          <h4 class="prices-from">
+                            <%=numUSD.format(m);%>
+                          </h4>
+                    </td>
+                    <td class="align-middle ">
+                      <% var m=product.price3 %>
+                        <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                          <h4 class="prices-from">
+                            <%=numUSD.format(m);%>
+                          </h4>
+                    </td>
+                    <td class="align-middle ">
+                      <% var m=product.price2 %>
+                        <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                          <h4 class="prices-from">
+                            <%=numUSD.format(m);%>
+                          </h4>
+                    </td>
+                    <td class="align-middle ">
+                      <% var m=product.price1 %>
+                        <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                          <h4 class="prices-from">
+                            <%=numUSD.format(m);%>
+                          </h4>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- </div> -->
+            <div class="quote-button-wrapper d-none d-sm-block">
+              <button class="get-quote__action primary action" data-modal-target="#myModal">
+                <h4>Get a quick quote</h4>
+              </button>
+            </div>
+            <div class="sample-link d-none d-sm-block">
+              To Order a Sample <a class='link-anchor' href="#" data-modal-target="#our-modal" class="sampleLink">Click
+                here</a>
+            </div>
+          </div>
+        </div>
+        <!-- =================== PAGE DIVIDERS ================== -->
+        <!-- <hr /> -->
+        <form class="modal form our-modal" id='our-modal'>
+          <div class="modal-header">
+            <button data-close-button class="close-button" id='our-close'>&times;</button>
+          </div>
+          <div class="quote-header" id="product-name2">
+            <h3>Sample Request for Product</h3>
+            <h3>
+              <%=product.product_name %> <br>
+                <% var m=product.price1 %>
+                  <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+                    <%=numUSD.format(m);%>
+            </h3>
+            <h4>$14.99 postage will be added to the total</h4>
+          </div>
+          <div id="form-container2">
+            <p style='font-size: 10px'>required fields along with delivery address*</p>
+            <fieldset>
+              <input type="hidden" id="product_price" name="product_price" value="<%=product.price1%>" />
+              <input type="hidden" id="product" name="product" value="<%=product.product_name%>" />
+              <input type="hidden" id="product_sku" name="product_sku" value="<%=product.product_sku%>" />
+              <input type="hidden" id="product_id" name="product_id" value="<%=product.product_id%>" />
+              <input name="name" id="name" placeholder="Your Name *" label="Your Name" type="text" tabindex="1"
+                required />
+            </fieldset>
+            <fieldset>
+              <input name="company" id="company" placeholder="Company" label="Company" type="text" tabindex="2" />
+            </fieldset>
+            <fieldset>
+              <input name="email" id="email" placeholder="Email Address *" label="email address" type="email"
+                tabindex="3" required />
+            </fieldset>
+            <fieldset>
+              <input name="phone" id="phone" placeholder="Phone Number *" label="phone number" type="tel" tabindex="4"
+                required />
+            </fieldset>
+            <fieldset>
+              <input name="address_line_1" id="address_line_1" placeholder="Address line 1" label="address_line_1"
+                type="text" tabindex="2" />
+            </fieldset>
+            <fieldset>
+              <input name="address_line_2" id="address_line_2" placeholder="Address line 2" label="address_line_2"
+                type="text" tabindex="2" />
+            </fieldset>
+            <div class="city-post">
+              <div class="city">
+                <fieldset>
+                  <input name="city" id="city" placeholder="City" label="city" type="text" tabindex="2" />
+                </fieldset>
+              </div>
+              <fieldset>
+                <input name="postcode" id="postcode" placeholder="Postcode" label="postcode" type="text" tabindex="2" />
+              </fieldset>
+            </div>
+
+            <input type="hidden" id="timestamp" name="timestamp" value="1286705410" />
+            <fieldset>
+              <button name="submit" label="submit" type="submit" id="q-send" data-submit="...Sending">
+                NEXT >>
+              </button>
+            </fieldset>
+          </div>
+          <div id='paypal-button-container2' style='display: none;'></div>
+          <div id="response2" style='display: none'>
+            <!-- <h1>
+              Order placed successfully (on payment success)
+            </h1>
+            <br /> -->
+            <form class="modal form sample-form">
+              <div class="quote-header">
+                <h3>
+                  <%=product.name%>
+                </h3>
+                <h3>Thank you for your order!</h3>
+                <h3>Please check your email</h3>
+                <h3>for order confirmation</h3>
+              </div>
+            </form>
+          </div>
+        </form>
+
+        <form class="modal form myModal" id="myModal"  data-doc="<%=product.product_id %>">
+          <div class="modal-header">
+            <button data-close-button class="close-button" id='my-close'>&times;</button>
+          </div>
+          <div class="quote-header" id="product-name">
+            <h3>Quote Request for Product</h3>
+            <h3>
+              <%=product.product_name %>
+            </h3>
+            <h4>Contact us today, and get your quotation within an hour!</h4>
+          </div>
+          <div id='form-container'>
+            <p style='font-size: 10px'>required fields*</p>
+            <fieldset>
+              <input type="hidden" id="product_price" name="product_price" value="<%=product.price1%>">
+              <input type="hidden" id="product" name="product" value="<%=product.product_name%>">
+              <input type="hidden" id="product_sku" name="product_sku" value="<%=product.product_sku%>">
+              <input type="hidden" id="product_id" name="product_id" value="<%=product.product_id%>">
+              <input name='name' id="name" placeholder="Your Name *" label="Your Name" type="text" tabindex="1"
+                required />
+            </fieldset>
+            <fieldset>
+              <input name='company' id="company" placeholder="Your Company" label="Your Company" type="text"
+                tabindex="2" />
+            </fieldset>
+            <fieldset>
+              <input re name='email' id="email" placeholder="Email Address *" label="email address" type="email"
+                tabindex="3" required />
+            </fieldset>
+            <fieldset>
+              <input name='phone' id="phone" placeholder="Phone Number *" label="phone number" type="tel" tabindex="4"
+                required />
+            </fieldset>
+            <fieldset>
+              <input name='quantity' id="quantity" placeholder="Quantity" label="quantity" type="number" tabindex="4" />
+            </fieldset>
+            <fieldset>
+              <input name='date' id="date" placeholder="Required by?" value="Required by?" label="Date required"
+                type="date" tabindex="4" />
+            </fieldset>
+            <fieldset>
+              <textarea name='message' id="message" placeholder="Any other requirements?"
+                label="Any other requirements?" tabindex="5"></textarea>
+            </fieldset>
+            <fieldset>
+              <p>Please attach your image. 2MB Max</p>
+              <input placeholder="Attach your logo - Max file size 2MB " label="Attach your logo - Max file size 2MB "
+                type="file" id="files" tabindex="4" accept="image/*,.pdf" multiple />
+            </fieldset>
+            <input type="hidden" id="timestamp" name="timestamp" value="1286705410">
+            <fieldset>
+              <button name="submit" label="submit" type="submit" id="q-send" data-submit="...Sending">
+                SEND
+              </button>
+            </fieldset>
+          </div>
+          <div id='paypal-button-container' style='display: none;'></div>
+          <div id="response" style='display: none'>
+            <!-- <h1>
+              Order placed successfully (on payment success)
+            </h1>
+            <br /> -->
+            <form class="modal form sample-form">
+              <div class="quote-header">
+                <h3>
+                  <%=product.name%>
+                </h3>
+                <h3>Thank you for your enquiry!</h3>
+                <h3>A member of the sales team</h3>
+                <h3>will contact you shortly.</h3>
+              </div>
+            </form>
+          </div>
+          </form>
+          </div>
+      </main>
+
+      
+
+      <form id="myModal" data-doc="<%=product.product_id %>" class="form-product-mobile getquote h-auto myModal">
+        <div id="product-name">
+        <%- include('./partials/heading.ejs',{heading:"Quote Request for Product "+product.product_name}) %>
+        <p class="h6 p-2">Contact us today, and get your quotation within an hour!</p>  
+        </div>
+        <div id='form-container' class="px-3">
+          <p style='font-size: 10px' class="text-left">required fields*</p>
+          <fieldset>
+            <input type="hidden" id="product_price" name="product_price" value="<%=product.price1%>">
+            <input type="hidden" id="product" name="product" value="<%=product.product_name%>">
+            <input type="hidden" id="product_sku" name="product_sku" value="<%=product.product_sku%>">
+            <input type="hidden" id="product_id" name="product_id" value="<%=product.product_id%>">
+            <input name='name' class="w-100" id="name" placeholder="Your Name *" label="Your Name" type="text" tabindex="1"
+              required />
+          </fieldset>
+          <fieldset>
+            <input name='company' class="w-100" id="company" placeholder="Your Company" label="Your Company" type="text"
+              tabindex="2" />
+          </fieldset>
+          <fieldset>
+            <input re name='email' class="w-100" id="email" placeholder="Email Address *" label="email address" type="email"
+              tabindex="3" required />
+          </fieldset>
+          <fieldset>
+            <input name='phone' class="w-100" id="phone" placeholder="Phone Number *" label="phone number" type="tel" tabindex="4"
+              required />
+          </fieldset>
+          <fieldset>
+            <input name='quantity' class="w-100" id="quantity" placeholder="Quantity" label="quantity" type="number" tabindex="4" />
+          </fieldset>
+          <fieldset>
+            <input name='date' id="date" class="w-100" placeholder="Required by?" value="Required by?" label="Date required"
+              type="date" tabindex="4" />
+          </fieldset>
+          <fieldset>
+            <textarea name='message' id="message"  placeholder="Any other requirements?"
+              label="Any other requirements?" class="h6 p-2 w-100" tabindex="5"></textarea>
+          </fieldset>
+          <fieldset>
+            <p class="h6 text-left">Please attach your image. 2MB Max</p>
+            <input placeholder="Attach your logo - Max file size 2MB " label="Attach your logo - Max file size 2MB "
+              type="file" id="files" tabindex="4" class="w-100" accept="image/*,.pdf" multiple />
+          </fieldset>
+          <input type="hidden" id="timestamp" name="timestamp" value="1286705410">
+          <fieldset>
+            <button name="submit" label="submit" type="submit" id="q-send" data-submit="...Sending">
+              SEND
+            </button>
+          </fieldset>
+        </div>
+        <div id='paypal-button-container' style='display: none; padding: 50px;'></div>
+        <div id="response" class="font-weight-bold mt-5 p-5 quote-header" style='display: none'>
+          <p>
+            Thank you for
+            Your enquiry.
+            A member of the
+            Team will contact
+            you
+          </p>
+        </div>
+      </form>
+
+
+
+      <form class="form-product-mobile ordersample h-auto our-modal" id='our-modal'>
+        <div id="product-name2">
+          <% var m=product.price1 %>
+          <% var numUSD=new Intl.NumberFormat('en-US',{ style:'currency', currency:'USD' }) %>
+          <%- include('./partials/heading.ejs',{heading:"Sample Request for Product "+product.product_name+" "+numUSD.format(m)}) %>
+          <p class="h6 p-2">$14.99 postage will be added to the total</p>  
+        </div>
+
+        <div id="form-container2" class="px-3">
+          <p style='font-size: 10px' class="text-left">required fields along with delivery address*</p>
+          <fieldset>
+            <input type="hidden" id="product_price" name="product_price" value="<%=product.price1%>" />
+            <input type="hidden" id="product" name="product" value="<%=product.product_name%>" />
+            <input type="hidden" id="product_sku" name="product_sku" value="<%=product.product_sku%>" />
+            <input type="hidden" id="product_id" name="product_id" value="<%=product.product_id%>" />
+            <input name="name" id="name" class="w-100" placeholder="Your Name *" label="Your Name" type="text" tabindex="1"
+              required />
+          </fieldset>
+          <fieldset>
+            <input name="company" id="company" class="w-100" placeholder="Company" label="Company" type="text" tabindex="2" />
+          </fieldset>
+          <fieldset>
+            <input name="email" id="email" class="w-100" placeholder="Email Address *" label="email address" type="email"
+              tabindex="3" required />
+          </fieldset>
+          <fieldset> 
+            <input name="phone" id="phone" class="w-100" placeholder="Phone Number *" label="phone number" type="tel" tabindex="4"
+              required />
+          </fieldset>
+          <fieldset>
+            <input name="address_line_1" class="w-100" id="address_line_1" placeholder="Address line 1" label="address_line_1"
+              type="text" tabindex="2" />
+          </fieldset>
+          <fieldset>
+            <input name="address_line_2" class="w-100" id="address_line_2" placeholder="Address line 2" label="address_line_2"
+              type="text" tabindex="2" />
+          </fieldset>
+          <div class="city-post">
+            <div class="city">
+              <fieldset>
+                <input name="city" id="city" class="w-100" placeholder="City" label="city" type="text" tabindex="2" />
+              </fieldset>
+            </div>
+            <fieldset>
+              <input name="postcode" id="postcode" class="w-100" placeholder="Postcode" label="postcode" type="text" tabindex="2" />
+            </fieldset>
+          </div>
+
+          <input type="hidden" id="timestamp" name="timestamp" value="1286705410" />
+          <fieldset>
+            <button name="submit" label="submit" type="submit" id="q-send" data-submit="...Sending">
+              NEXT >>
+            </button>
+          </fieldset>
+        </div>
+        <div id='paypal-button-container2' style='display: none;'></div>
+        <div id="response2" style='display: none' class="font-weight-bold mt-5 p-5">
+          <!-- <h1>
+            Order placed successfully (on payment success)
+          </h1>
+          <br /> -->
+          <form class="modal form sample-form">
+            <div class="quote-header">
+              <h3>
+                <%=product.name%>
+              </h3>
+              <h3>Thank you for your order!</h3>
+              <h3>Please check your email</h3>
+              <h3>for order confirmation</h3>
+            </div>
+          </form>
+        </div>
+
+        </form>
+  
+      <% }) %>    
+        <%- include('./partials/footer.ejs') %>
+
+
+     
+  </body>
+
+  </html>
